@@ -1,0 +1,12 @@
+*.RProj
+*.RData
+*.csv
+*.pdf
+*.shp
+*.zip
+*.dbf
+*.prj
+*.shx
+*.geojson
+.RHistory
+.Rproj.user
