@@ -1,18 +1,14 @@
 library(tidyverse) # data cleaning
 library(sf) # spatial functions
-library(knitr)
-library(kableExtra)
-library(RColorBrewer)
 library(here)
 library(sp)
-library(patchwork)
-library(leaflet)
+
 
 #function for getting data.
 get_data <- function(type ="fixed", year = "2020", quarter = "1"){
   temp <- tempfile()
   temp2 <- tempfile()
-  
+
 
   if(quarter==1){
     filedate <- paste0(year, "-01-01")
