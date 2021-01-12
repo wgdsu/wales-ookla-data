@@ -9,7 +9,7 @@ get_data <- function(type ="fixed", year = "2020", quarter = "1"){
   temp <- tempfile()
   temp2 <- tempfile()
 
-
+  #customise file name based on parameters of data set
   if(quarter==1){
     filedate <- paste0(year, "-01-01")
   }else if(quarter==2){
@@ -32,7 +32,19 @@ get_data <- function(type ="fixed", year = "2020", quarter = "1"){
   ## finds the filepath of the shapefile (.shp) file in the temp2 unzip folder
   ## the $ at the end of ".shp$" ensures you are not also finding files such as .shp.xml
   shp <- read_sf(list.files(temp2, pattern = ".shp$",full.names=TRUE))
-
-  write_sf(shp, paste0("./data/y-", year, "-q", quarter, "-type-", type, ".shp"))
+  
+  
+  # create a bounding box for Wales
+  wales_bbox = st_as_sfc(st_bbox(c(xmin = -5.7, ymin = 51.35, xmax = -2.66, ymax = 53.5), crs = st_crs(full_tiles)))
+  
+  #get all the tiles that intersect with the bounding box
+  tiles_in_bbox <- st_intersects(wales_bbox, shp)
+  
+  #filter for the tiles that intersect with Wales
+  shp_wales <- shp[tiles_in_bbox[[1]],]
+  
+  #write the data to the data folder with customised filenames
+  write_sf(shp_wales, paste0("./data/y-", year, "-q", quarter, "-type-", type, ".shp/y-", year, "-q", quarter, "-type-", type, ".shp"))
 
 }
+
