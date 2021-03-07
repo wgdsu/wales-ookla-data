@@ -26,17 +26,25 @@ get_data()
 The `get_data()` function can take 3 parameters to specify the cut of data you want.
 
 * **type**
+
 `fixed` - broadband dataset (*default*)
+
 `mobile` - mobile internet dataset
 
 * **year**
+
 `2020` - data publications started in 2020 (*default*)
 
 * **quarter**
+
 `1` - Quarter 1 (*default*)
+
 `2` - Quarter 2
+
 `3` - Quarter 3
+
 `4` - Quarter 4
+
 
 These parameters can be passed as parameters. If a specific parameter isnt specified then the function will assume the default value.
 

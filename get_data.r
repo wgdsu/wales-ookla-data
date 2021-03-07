@@ -35,7 +35,7 @@ get_data <- function(type ="fixed", year = "2020", quarter = "1"){
   
   
   # create a bounding box for Wales
-  wales_bbox = st_as_sfc(st_bbox(c(xmin = -5.7, ymin = 51.35, xmax = -2.66, ymax = 53.5), crs = st_crs(full_tiles)))
+  wales_bbox = st_as_sfc(st_bbox(c(xmin = -5.7, ymin = 51.35, xmax = -2.66, ymax = 53.5), crs = st_crs(shp)))
   
   #get all the tiles that intersect with the bounding box
   tiles_in_bbox <- st_intersects(wales_bbox, shp)
@@ -44,7 +44,7 @@ get_data <- function(type ="fixed", year = "2020", quarter = "1"){
   shp_wales <- shp[tiles_in_bbox[[1]],]
   
   #write the data to the data folder with customised filenames
-  write_sf(shp_wales, paste0("./data/y-", year, "-q", quarter, "-type-", type, ".shp/y-", year, "-q", quarter, "-type-", type, ".shp"))
+  write_sf(shp_wales, paste0("./data/y-", year, "-q", quarter, "-type-", type, ".shp"))
 
 }
 
